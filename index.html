@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kizuki - AI × 日報管理で"チームの生産性"を一気に底上げ！</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .feature-icon {
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+        }
+        .blue-glow {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+        .pricing-card {
+            transition: all 0.3s ease;
+        }
+        .pricing-card:hover {
+            transform: scale(1.03);
+        }
+        .wave-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .wave-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+        .wave-svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 80px;
+        }
+        .wave-fill {
+            fill: #f3f4f6;
+        }
+        .custom-shape-divider-bottom-1618035389 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto flex justify-between items-center py-4 px-6">
+            <div class="flex items-center">
+                <div class="text-3xl font-bold text-blue-700">kizuki</div>
+                <span class="ml-2 text-gray-500 text-sm">by UHD</span>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#features" class="text-gray-600 hover:text-blue-700 transition duration-300">機能</a>
+                <a href="#benefits" class="text-gray-600 hover:text-blue-700 transition duration-300">メリット</a>
+                <a href="#pricing" class="text-gray-600 hover:text-blue-700 transition duration-300">料金</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-blue-700 transition duration-300">導入事例</a>
+            </nav>
+            <a href="#cta" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-300 shadow-md hover:shadow-lg">
+                無料デモを試す
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-20 px-4 gradient-bg text-white relative overflow-hidden">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+                    AI × 日報管理で<br>"チームの生産性"を<br>一気に底上げ！
+                </h1>
+                <p class="text-xl mb-8 text-blue-100">
+                    日々の報告を AIが分析し、見落としゼロ＆<br>最適なフィードバックを実現するクラウドツール
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#cta" class="bg-white text-blue-700 hover:bg-blue-50 font-bold py-3 px-8 rounded-lg transition duration-300 text-center shadow-lg">
+                        まずは無料で試す
+                    </a>
+                    <a href="#features" class="border-2 border-white text-white hover:bg-white hover:text-blue-700 font-medium py-3 px-8 rounded-lg transition duration-300 text-center">
+                        詳しく見る
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 relative">
+                <div class="bg-white p-6 rounded-xl shadow-2xl blue-glow">
+                    <div class="flex items-center mb-4">
+                        <div class="h-3 w-3 bg-red-500 rounded-full mr-2"></div>
+                        <div class="h-3 w-3 bg-yellow-500 rounded-full mr-2"></div>
+                        <div class="h-3 w-3 bg-green-500 rounded-full"></div>
+                    </div>
+                    <div class="border-t border-gray-200 pt-4">
+                        <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="font-medium">本日の日報</div>
+                                <div class="text-sm text-gray-500">2025年4月9日</div>
+                            </div>
+                            <p class="text-sm text-gray-700 mb-2">
+                                今日は新規顧客2社へのプレゼンを実施。A社からは前向きな返答があり、来週の追加ミーティングが決定。B社はコスト面で競合と比較検討中だが、当社の機能面の優位性には興味を示していた。
+                            </p>
+                            <div class="flex items-center">
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">営業活動</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">プレゼン</span>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <div class="font-medium text-blue-700 mb-1">AIフィードバック</div>
+                            <p class="text-sm text-gray-700 mb-2">
+                                素晴らしい進捗です！顧客の反応を具体的に記録できています。次のステップとして、A社のミーティングに向けた準備計画と、B社に対するコスト面での付加価値提案を検討してみてはいかがでしょうか？
+                            </p>
+                            <div class="flex items-center mt-2">
+                                <div class="flex items-center mr-4">
+                                    <div class="w-2 h-2 bg-blue-600 rounded-full mr-1"></div>
+                                    <span class="text-xs text-gray-600">具体性: 高</span>
+                                </div>
+                                <div class="flex items-center mr-4">
+                                    <div class="w-2 h-2 bg-green-600 rounded-full mr-1"></div>
+                                    <span class="text-xs text-gray-600">行動計画: 中</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-2 h-2 bg-purple-600 rounded-full mr-1"></div>
+                                    <span class="text-xs text-gray-600">成果共有: 高</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-blue-300 bg-opacity-40 rounded-full filter blur-xl"></div>
+                <div class="absolute -left-8 -top-8 w-32 h-32 bg-blue-800 bg-opacity-20 rounded-full filter blur-xl"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Statement -->
+    <section class="py-16 px-4 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">従来の日報運用でよくある課題</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-red-50 p-6 rounded-xl transition-all duration-300 card-hover">
+                    <div class="text-red-500 text-4xl mb-4">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">見落とし多発</h3>
+                    <p class="text-gray-600">全日報を読むのは困難で、重要な情報を見逃す可能性が高く、適切なフィードバックが遅れがちに。</p>
+                </div>
+                <div class="bg-orange-50 p-6 rounded-xl transition-all duration-300 card-hover">
+                    <div class="text-orange-500 text-4xl mb-4">
+                        <i class="fas fa-tired"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">形骸化と負担増</h3>
+                    <p class="text-gray-600">書く側も管理側も義務的になり、本来の目的である情報共有や業務改善につながりにくくなります。</p>
+                </div>
+                <div class="bg-yellow-50 p-6 rounded-xl transition-all duration-300 card-hover">
+                    <div class="text-yellow-500 text-4xl mb-4">
+                        <i class="fas fa-battery-quarter"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">モチベダウン</h3>
+                    <p class="text-gray-600">社員の成長実感やフィードバックが乏しく、日報作成の意義を感じられず、モチベーションが低下します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-20 px-4 bg-gray-100 relative">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">AIを活用した日報管理の新しいカタチ</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+                日々の報告をAIが分析し、見落としゼロ＆最適なフィードバックを実現するクラウドツールで、
+                管理者の負担軽減、社員の成長加速、組織リスク低減を実現します。
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 card-hover">
+                    <div class="w-16 h-16 feature-icon text-white rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-edit text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">カスタム日報テンプレート</h3>
+                    <p class="text-gray-600">業種や役職に合わせて自由にカスタマイズ可能なテンプレートを提供。必要な情報を的確に収集します。</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 card-hover">
+                    <div class="w-16 h-16 feature-icon text-white rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-robot text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">AIフィードバック</h3>
+                    <p class="text-gray-600">AIが日報内容を分析し、褒めポイントと改善提案を自動生成。ひとりひとりの成長をサポートします。</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 card-hover">
+                    <div class="w-16 h-16 feature-icon text-white rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-line text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">AIサマリー</h3>
+                    <p class="text-gray-600">全社の日報を瞬時に要約・分析し、管理者に重要ポイントを提示。見落としゼロの運用を実現します。</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 card-hover">
+                    <div class="w-16 h-16 feature-icon text-white rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">離職リスク検知</h3>
+                    <p class="text-gray-600">日報の文面からネガティブワードや不満・ストレス兆候を検知し、離職リスクを早期に察知します。</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 card-hover">
+                    <div class="w-16 h-16 feature-icon text-white rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-analytics text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">データ分析・レポート</h3>
+                    <p class="text-gray-600">部署や個人のKPIをダッシュボードで視覚化。トレンド分析や比較データで戦略的な意思決定を支援します。</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 card-hover">
+                    <div class="w-16 h-16 feature-icon text-white rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-comment-dots text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">通知機能</h3>
+                    <p class="text-gray-600">Slack/Teamsと連携し、重要な日報や異常値を検知した際に自動通知。情報をリアルタイムに共有します。</p>
+                </div>
+            </div>
+            
+            <div class="bg-blue-700 p-8 rounded-xl text-white text-center">
+                <h3 class="text-2xl font-bold mb-4">AI活用のポイント</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-blue-800 bg-opacity-50 p-4 rounded-lg">
+                        <div class="text-3xl mb-2"><i class="fas fa-lightbulb"></i></div>
+                        <h4 class="text-xl font-bold mb-2">AIフィードバック</h4>
+                        <p class="text-sm">書き手のモチベーション向上と学びの促進。的確な助言で成長をサポート。</p>
+                    </div>
+                    <div class="bg-blue-800 bg-opacity-50 p-4 rounded-lg">
+                        <div class="text-3xl mb-2"><i class="fas fa-search"></i></div>
+                        <h4 class="text-xl font-bold mb-2">AIサマリー</h4>
+                        <p class="text-sm">管理者の負担を大幅軽減。重要な情報の見落としを防止し、効率的な管理を実現。</p>
+                    </div>
+                    <div class="bg-blue-800 bg-opacity-50 p-4 rounded-lg">
+                        <div class="text-3xl mb-2"><i class="fas fa-exclamation-triangle"></i></div>
+                        <h4 class="text-xl font-bold mb-2">離職リスク検知</h4>
+                        <p class="text-sm">「疲れ」「しんどい」などのネガティブワードを検知し、早期対応を可能に。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section id="benefits" class="py-20 px-4 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">導入メリット</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+                kizukiは組織のあらゆる立場の方に価値を提供します
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-blue-50 p-6 rounded-xl transition-all duration-300 card-hover">
+                    <div class="text-blue-600 text-4xl mb-4">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">管理者目線</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>日報確認時間を月30時間削減</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>チームの雰囲気やストレスを俯瞰的に把握</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>離職リスクやトラブルの早期発見が可能に</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>的確なフィードバックをAIが提案</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-green-50 p-6 rounded-xl transition-all duration-300 card-hover">
+                    <div class="text-green-600 text-4xl mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">社員目線</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>毎日のポジティブフィードバックでモチベーション向上</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>書けば書くほどAIが自分に合った的確なアドバイス</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>日々の振り返りが楽しくなり、習慣化しやすい</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>スキルや成長の可視化で達成感を得られる</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-purple-50 p-6 rounded-xl transition-all duration-300 card-hover">
+                    <div class="text-purple-600 text-4xl mb-4">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">経営層目線</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>KPI/アナリティクス機能で経営判断が迅速に</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>組織のコミュニケーション活性化による生産性向上</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>平均15%の離職率低下を実現（導入企業実績）</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <span>データに基づく組織改善で企業文化を強化</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="py-20 px-4 bg-gray-100">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">利用イメージ</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+                シンプルな運用フローで、日報管理を効率化します
+            </p>
+            
+            <div class="bg-white p-8 rounded-xl shadow-md">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-center md:text-left md:w-1/4 mb-6 md:mb-0">
+                        <div class="bg-blue-100 text-blue-800 w-12 h-12 rounded-full flex items-center justify-center text-xl mx-auto md:mx-0 mb-2">A</div>
+                        <h3 class="font-bold">打刻と日報作成</h3>
+                        <p class="text-sm text-gray-600 mt-1">朝出勤（打刻）→ 業務 → 退勤前に日報作成</p>
+                    </div>
+                    
+                    <div class="hidden md:block text-blue-500 text-3xl">
+                        <i class="fas fa-long-arrow-alt-right"></i>
+                    </div>
+                    
+                    <div class="text-center md:w-1/4 mb-6 md:mb-0">
+                        <div class="bg-green-100 text-green-800 w-12 h-12 rounded-full flex items-center justify-center text-xl mx-auto mb-2">B</div>
+                        <h3 class="font-bold">AI分析とフィードバック</h3>
+                        <p class="text-sm text-gray-600 mt-1">AIがドラフト/フィードバック → 上司へ提出</p>
+                    </div>
+                    
+                    <div class="hidden md:block text-blue-500 text-3xl">
+                        <i class="fas fa-long-arrow-alt-right"></i>
+                    </div>
+                    
+                    <div class="text-center md:text-right md:w-1/4 mb-6 md:mb-0">
+                        <div class="bg-purple-100 text-purple-800 w-12 h-12 rounded-full flex items-center justify-center text-xl mx-auto md:ml-auto mb-2">C</div>
+                        <h3 class="font-bold">管理者確認</h3>
+                        <p class="text-sm text-gray-600 mt-1">上司/管理者はAIサマリーで全体を俯瞰 → コメント</p>
+                    </div>
+                    
+                    <div class="hidden md:block text-blue-500 text-3xl">
+                        <i class="fas fa-long-arrow-alt-right"></i>
+                    </div>
+                    
+                    <div class="text-center md:text-right md:w-1/4">
+                        <div class="bg-yellow-100 text-yellow-800 w-12 h-12 rounded-full flex items-center justify-center text-xl mx-auto md:ml-auto mb-2">D</div>
+                        <h3 class="font-bold">レポート・振り返り</h3>
+                        <p class="text-sm text-gray-600 mt-1">翌日・翌週にまとめてレポート/改善提案</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competition Comparison -->
+    <section class="py-20 px-4 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">競合比較</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+                kizukiは他の日報管理システムと比較して、AI活用面で圧倒的な優位性があります
+            </p>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white rounded-xl shadow-md">
+                    <thead>
+                        <tr class="bg-blue-700 text-white">
+                            <th class="py-4 px-6 text-left rounded-tl-xl">機能</th>
+                            <th class="py-4 px-6 text-center">kizuki</th>
+                            <th class="py-4 px-6 text-center">日報くん</th>
+                            <th class="py-4 px-6 text-center">NipoPlus</th>
+                            <th class="py-4 px-6 text-center">gamba!</th>
+                            <th class="py-4 px-6 text-center rounded-tr-xl">Reflect</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="py-4 px-6 font-medium">カスタムテンプレート</td>
+                            <td class="py-4 px-6 text-center text-green-600"><i class="fas fa-check-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-green-600"><i class="fas fa-check-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-green-600"><i class="fas fa-check-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-green-600"><i class="fas fa-check-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-red-600"><i class="fas fa-times-circle text-xl"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-6 font-medium">AI要約・サマリー</td>
+                            <td class="py-4 px-6 text-center text-green-600"><i class="fas fa-check-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-red-600"><i class="fas fa-times-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-red-600"><i class="fas fa-times-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-yellow-600"><i class="fas fa-exclamation-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-green-600"><i class="fas fa-check-circle text-xl"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-6 font-medium">離職リスク検知</td>
+                            <td class="py-4 px-6 text-center text-green-600"><i class="fas fa-check-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-red-600"><i class="fas fa-times-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-red-600"><i class="fas fa-times-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-red-600"><i class="fas fa-times-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-yellow-600"><i class="fas fa-exclamation-circle text-xl"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-6 font-medium">Slack/Teams連携</td>
+                            <td class="py-4 px-6 text-center text-green-600"><i class="fas fa-check-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-red-600"><i class="fas fa-times-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-red-600"><i class="fas fa-times-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-green-600"><i class="fas fa-check-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-yellow-600"><i class="fas fa-exclamation-circle text-xl"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-6 font-medium">AI価格対効果</td>
+                            <td class="py-4 px-6 text-center text-green-600"><i class="fas fa-check-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center">-</td>
+                            <td class="py-4 px-6 text-center">-</td>
+                            <td class="py-4 px-6 text-center text-yellow-600"><i class="fas fa-exclamation-circle text-xl"></i></td>
+                            <td class="py-4 px-6 text-center text-yellow-600"><i class="fas fa-exclamation-circle text-xl"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="mt-6 text-center text-gray-600 text-sm">
+                <span class="inline-flex items-center mr-4">
+                    <i class="fas fa-check-circle text-green-600 mr-1"></i> 完全対応
+                </span>
+                <span class="inline-flex items-center mr-4">
+                    <i class="fas fa-exclamation-circle text-yellow-600 mr-1"></i> 一部対応
+                </span>
+                <span class="inline-flex items-center">
+                    <i class="fas fa-times-circle text-red-600 mr-1"></i> 未対応
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-20 px-4 gradient-bg text-white relative">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">料金プラン</h2>
+            <p class="text-center text-blue-100 mb-12 max-w-3xl mx-auto">
+                わかりやすい料金体系で、あらゆる規模の組織に対応します
+            </p>
+            
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto pricing-card">
+                <div class="text-center">
+                    <h3 class="text-blue-700 text-3xl font-bold mb-2">シンプルな従量課金制</h3>
+                    <div class="bg-blue-50 rounded-lg p-4 mb-6">
+                        <span class="text-5xl font-bold text-blue-700">500</span>
+                        <span class="text-xl text-blue-600 ml-1">円</span>
+                        <span class="text-gray-600">/ユーザー・月</span>
+                    </div>
+                    
+                    <ul class="text-left text-gray-700 space-y-4 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>初期費用0円で導入が簡単</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>すべての機能が利用可能（AI分析含む）</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>最低利用人数の制限なし</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>いつでも解約可能</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>無料トライアル期間: 30日間</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="border-t border-gray-200 pt-6 text-center">
+                        <p class="text-gray-600 mb-4">追加オプション：</p>
+                        <p class="text-gray-700 mb-2">カスタム開発・連携：個別見積</p>
+                        <p class="text-gray-700">大規模導入割引：100名以上</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <p class="text-blue-100 mb-2">業界標準価格：300円～980円/ユーザー</p>
+                <p class="text-blue-100 mb-6">導入後1週間で平均20%の時間削減を実現</p>
+                <a href="#cta" class="bg-white text-blue-700 hover:bg-blue-50 font-bold py-3 px-8 rounded-lg transition duration-300 inline-block shadow-lg">
+                    今すぐ無料で試す
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-20 px-4 bg-gray-100">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">導入事例</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+                多くの企業様でkizukiは成果を上げています
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center text-blue-700 font-bold mr-4">A</div>
+                        <div>
+                            <h3 class="font-bold">ITサービス企業</h3>
+                            <p class="text-sm text-gray-500">従業員150名</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        「管理職の日報確認時間が月30時間削減され、その分を1on1ミーティングに充てられるようになりました。離職率も15%改善しています。」
+                    </p>
+                    <div class="text-gray-600 text-sm">
+                        <div class="flex items-center justify-between">
+                            <span>管理工数削減</span>
+                            <span class="font-bold">30時間/月</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-1">
+                            <span>離職率改善</span>
+                            <span class="font-bold">15%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center text-green-700 font-bold mr-4">B</div>
+                        <div>
+                            <h3 class="font-bold">建設会社</h3>
+                            <p class="text-sm text-gray-500">従業員80名</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        「現場からの日報を本社でリアルタイムに共有できるようになり、問題の早期発見・対応が可能になりました。コミュニケーションが3倍に増加しています。」
+                    </p>
+                    <div class="text-gray-600 text-sm">
+                        <div class="flex items-center justify-between">
+                            <span>コミュニケーション増加</span>
+                            <span class="font-bold">3倍</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-1">
+                            <span>問題解決速度</span>
+                            <span class="font-bold">2.5倍</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-md transition-all duration-300 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center text-purple-700 font-bold mr-4">C</div>
+                        <div>
+                            <h3 class="font-bold">小売チェーン</h3>
+                            <p class="text-sm text-gray-500">従業員250名</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        「AIによる日報分析で店舗間の売上差の原因が明確になり、ベストプラクティスを全店舗で共有。導入半年で全社売上が12%向上しました。」
+                    </p>
+                    <div class="text-gray-600 text-sm">
+                        <div class="flex items-center justify-between">
+                            <span>全社売上向上</span>
+                            <span class="font-bold">12%</span>
+                        </div>
+                        <div class="flex items-center justify-between mt-1">
+                            <span>データ分析時間削減</span>
+                            <span class="font-bold">85%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <p class="text-gray-600 mb-6">将来的な機能拡張：API連携強化、高度なAI分析、モバイルアプリ刷新など</p>
+                <a href="#cta" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 inline-block shadow-md">
+                    貴社の成功事例を作りましょう
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta" class="py-20 px-4 gradient-bg text-white">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl font-bold text-center mb-6">一緒に新しい日報のカタチを始めませんか？</h2>
+            <p class="text-center text-blue-100 mb-8 max-w-2xl mx-auto">
+                初期費用0円、30日間の無料トライアルで、kizukiの効果を実感してください。
+                お問い合わせいただいた方には、専任コンサルタントが貴社に最適な活用方法をご提案します。
+            </p>
+            
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="company" class="block text-gray-700 font-medium mb-2">会社名</label>
+                            <input type="text" id="company" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">お名前</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">メールアドレス</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-gray-700 font-medium mb-2">電話番号</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-gray-700 font-medium mb-2">ご質問・ご要望（任意）</label>
+                        <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 shadow-md">
+                            無料トライアルを申し込む
+                        </button>
+                        <p class="text-gray-600 text-sm mt-4">※ご入力いただいた情報は、お問い合わせ対応のみに利用します</p>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="mt-10 text-center">
+                <p class="text-xl font-bold mb-4">お電話でのお問い合わせ</p>
+                <p class="text-2xl font-bold mb-2">03-XXXX-XXXX</p>
+                <p class="text-blue-100">受付時間：平日 9:00～18:00</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 bg-gray-800 text-white">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="text-2xl font-bold mb-4 text-white">kizuki</div>
+                    <p class="text-gray-400 max-w-xs">
+                        AI × 日報管理で"チームの生産性"を一気に底上げするクラウドサービス
+                    </p>
+                    <div class="mt-4">
+                        <p class="text-gray-400">株式会社UHD</p>
+                        <p class="text-gray-400">〒100-0001 東京都千代田区XXX</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-lg font-bold mb-4">サービス</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#features" class="text-gray-400 hover:text-white transition duration-300">機能紹介</a></li>
+                            <li><a href="#benefits" class="text-gray-400 hover:text-white transition duration-300">導入メリット</a></li>
+                            <li><a href="#pricing" class="text-gray-400 hover:text-white transition duration-300">料金プラン</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">導入事例</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-bold mb-4">サポート</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">よくある質問</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">お問い合わせ</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">デモ依頼</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">サポートセンター</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-bold mb-4">会社情報</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">会社概要</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">プライバシーポリシー</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">利用規約</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">採用情報</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+                <p class="text-gray-400">© 2025 UHD Corporation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
